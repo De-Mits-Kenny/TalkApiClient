@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using TalkApi.cClient.Ui.Models;
 
@@ -11,17 +12,23 @@ namespace TalkApi.cClient.Ui.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ChatChannelApi _chatChannelApi;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ChatChannelApi chatChannelApi)
         {
-            _logger = logger;
+            _chatChannelApi = chatChannelApi;
         }
 
-        public IActionResult Index()
+
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var channels = await _chatChannelApi.GetAllAsync();
+
+
+            return View(channels);
         }
+
+
 
         public IActionResult Privacy()
         {
@@ -33,5 +40,8 @@ namespace TalkApi.cClient.Ui.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
     }
 }

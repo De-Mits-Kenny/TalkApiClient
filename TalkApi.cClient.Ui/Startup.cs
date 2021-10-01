@@ -7,12 +7,15 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
+using TalkApi.cClient.Ui.Models;
 
 namespace TalkApi.cClient.Ui
 {
     public class Startup
     {
+   
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -24,6 +27,12 @@ namespace TalkApi.cClient.Ui
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddTransient<ChatChannelApi>();
+            services.AddHttpClient("TalkApi", (sp,httpClient) =>
+            {
+                httpClient.BaseAddress = new Uri("https://talkapi.azurewebsites.net");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
