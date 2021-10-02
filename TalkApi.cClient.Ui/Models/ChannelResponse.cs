@@ -2,7 +2,7 @@
 
 namespace TalkApi.cClient.Ui.Models
 {
-    public class ChatChannelResponse
+    public class ChannelResponse
     {
         public int id { get; set; }
         public  string Name { get; set; }

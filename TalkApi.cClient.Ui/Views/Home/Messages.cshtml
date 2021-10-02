@@ -1,0 +1,14 @@
+﻿@model IList<ChatResponse>
+
+@{
+    ViewData["Title"] = "Messages";
+}
+
+<div class="text-center">
+
+
+    @foreach (var chatResponse in Model)
+    {
+        <p>@chatResponse.Author send: @chatResponse.Message at [@chatResponse.createdAt] on the channel @chatResponse.Channel</p>
+    }
+</div>

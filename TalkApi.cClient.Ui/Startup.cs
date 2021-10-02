@@ -28,7 +28,8 @@ namespace TalkApi.cClient.Ui
         {
             services.AddControllersWithViews();
 
-            services.AddTransient<ChatChannelApi>();
+            services.AddTransient<ChannelService>();
+            services.AddTransient<ChatService>();
             services.AddHttpClient("TalkApi", (sp,httpClient) =>
             {
                 httpClient.BaseAddress = new Uri("https://talkapi.azurewebsites.net");

@@ -1,7 +1,7 @@
 ﻿@model IList<ChannelResponse>
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Channels";
 }
 
 <div class="text-center">
@@ -9,8 +9,6 @@
     
     @foreach (var channel in Model)
     {
-    <p>Channel @channel.Name was created at [@channel.createdAt]</p>
+        <p>Channel @channel.Name was created at [@channel.createdAt]</p>
     }
 </div>
-
-

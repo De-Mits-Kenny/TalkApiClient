@@ -12,20 +12,38 @@ namespace TalkApi.cClient.Ui.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ChatChannelApi _chatChannelApi;
+        private readonly ChannelService _channelService;
+        private readonly ChatService _chatService;
 
-        public HomeController(ChatChannelApi chatChannelApi)
+        public HomeController(ChannelService channelService, ChatService chatService)
         {
-            _chatChannelApi = chatChannelApi;
+            _channelService = channelService;
+            _chatService = chatService;
         }
 
 
         public async Task<IActionResult> Index()
         {
-            var channels = await _chatChannelApi.GetAllAsync();
+            var channels = await _channelService.GetAllAsync();
 
 
             return View(channels);
+        }
+
+        public async Task<IActionResult> Channels()
+        {
+            var channels = await _channelService.GetAllAsync();
+
+
+            return View(channels);
+        }
+
+        public async Task<IActionResult> Messages()
+        {
+            var messages = await _chatService.GetAllAsync();
+
+
+            return View(messages);
         }
 
 
